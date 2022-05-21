@@ -1,0 +1,18 @@
+name: Utils
+version: 1.0
+author: Redwoub
+main: fr.redwoub.utils.Main
+commands:
+  bc:
+    permission: utils.bc
+    permission-message: §cVous n'avez pas la permisson d'executer cette commande.
+  gm:
+    permission: utils.gm
+    permission-message: §cVous n'avez pas la permisson d'executer cette commande.
+  skull:
+    permission: utils.skull
+    permission-message: §cVous n'avez pas la permisson d'executer cette commande.
+  discord:
+  fly:
+    permission: utils.fly
+    permission-message: §cVous n'avez pas la permisson d'executer cette commande.
