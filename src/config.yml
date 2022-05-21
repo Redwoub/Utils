@@ -1,0 +1,9 @@
+permissions:
+  fly: utils.fly
+  flyother: utils.fly.other
+  bc: utils.bc
+  gm: utils.gm
+  skull: utils.skull
+messages:
+  discord: "https://discord.gg/"
+  prefix: "&b[&6Mydoria&b]&a"
