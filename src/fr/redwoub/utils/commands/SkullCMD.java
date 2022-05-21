@@ -1,5 +1,6 @@
 package fr.redwoub.utils.commands;
 
+import fr.redwoub.utils.Main;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -15,7 +16,12 @@ public class SkullCMD implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
         if(!(sender instanceof Player)){
-            sender.sendMessage(ChatColor.RED + "Seul un joueur peut executer cette command");
+            sender.sendMessage(ChatColor.RED + "Only a player can execute this command !");
+            return false;
+        }
+
+        if(!sender.hasPermission(Main.getInstance().getConfig().getString("permissions.skull"))){
+            sender.sendMessage("You don't have the permission !");
             return false;
         }
 
@@ -31,7 +37,7 @@ public class SkullCMD implements CommandExecutor {
         skullMeta.setOwner(args[0]);
         itemStack.setItemMeta(skullMeta);
         player.getInventory().addItem(itemStack);
-        player.sendMessage("§aVous avez bien recu la tete de : " + args[0]);
+        player.sendMessage("§aYou have been recive the head of : " + args[0]);
         return false;
     }
 }

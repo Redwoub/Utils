@@ -1,5 +1,6 @@
 package fr.redwoub.utils.commands;
 
+import fr.redwoub.utils.Main;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -12,7 +13,12 @@ public class GmCMD implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
 
         if(!(sender instanceof Player)){
-            sender.sendMessage("Seul un joueur peux executer cette commande !");
+            sender.sendMessage("Only a player can execute this command !");
+            return false;
+        }
+
+        if(!sender.hasPermission(Main.getInstance().getConfig().getString("permissions.gm"))){
+            sender.sendMessage("You don't have the permission !");
             return false;
         }
 
@@ -39,7 +45,7 @@ public class GmCMD implements CommandExecutor {
             player.setGameMode(GameMode.SPECTATOR);
             return false;
         }
-        player.sendMessage("Ce mode de jeu n'existe pas !");
+        player.sendMessage("§cThis gamemode doesn't exist");
         return false;
     }
 }
