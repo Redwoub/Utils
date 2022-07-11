@@ -14,9 +14,10 @@ public class DiscordCMD implements CommandExecutor {
 
         sender.sendMessage("§9───────────────────");
         sender.sendMessage(" ");
-        sender.sendMessage("§eDiscord : " + ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig().getString("messages.discord")));
+        sender.sendMessage(ChatColor.translateAlternateColorCodes('&',Main.getInstance().getConfig().getString("messages.prefix")) + " §eDiscord : " + ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig().getString("messages.discord")));
         sender.sendMessage(" ");
         sender.sendMessage("§9───────────────────");
+
         return false;
     }
 }
