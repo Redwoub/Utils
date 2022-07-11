@@ -25,11 +25,8 @@ public class BcCMD implements CommandExecutor {
         }
         stringBuilder = new StringBuilder();
         for(String str : args){
-            stringBuilder.append(str + " ");
+            stringBuilder.append(str).append(" ");
         }
-
-        String alert = stringBuilder.toString();
-        alert = alert.replace("&", "§");
         String value = ChatColor.translateAlternateColorCodes('&', stringBuilder.toString());
         Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig().getString("messages.prefix")) + " " + value);
         return false;
