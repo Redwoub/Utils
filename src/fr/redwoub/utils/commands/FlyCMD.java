@@ -9,6 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class FlyCMD implements CommandExecutor {
+    private final String prefix = ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig().getString("messages.prefix"));
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
@@ -17,22 +18,23 @@ public class FlyCMD implements CommandExecutor {
             sender.sendMessage("Seul un joueur peux executer cette commande");
             return false;
         }
+
         Player player = (Player) sender;
 
         if(args.length == 0){
             if(player.hasPermission(Main.getInstance().getConfig().getString("permissions.fly"))){
-                if(Main.getInstance().flying.get(player.getUniqueId()) == true){
+                if(Main.getInstance().flying.get(player.getUniqueId())){
                     player.setAllowFlight(false);
                     player.setFlying(false);
                     Main.getInstance().flying.remove(player.getUniqueId());
                     Main.getInstance().flying.put(player.getUniqueId(), false);
-                    player.sendMessage("§cFly disable");
+                    player.sendMessage(prefix + " §cFly disable");
                 }else {
                     player.setAllowFlight(true);
                     player.setFlying(true);
                     Main.getInstance().flying.remove(player.getUniqueId());
                     Main.getInstance().flying.put(player.getUniqueId(), true);
-                    player.sendMessage("§aFly enable");
+                    player.sendMessage(prefix + " §aFly enable");
                 }
             }
         }
@@ -40,25 +42,25 @@ public class FlyCMD implements CommandExecutor {
         if(args.length == 1){
             if(player.hasPermission(Main.getInstance().getConfig().getString("permissions.flyother"))){
                 if(Bukkit.getPlayer(args[0]) == null){
-                    player.sendMessage("§cThis player doesn't exist !");
+                    player.sendMessage(prefix + " §cThis player doesn't exist !");
                     return false;
                 }
 
                 Player target = Bukkit.getPlayer(args[0]);
-                if(Main.getInstance().flying.get(target.getUniqueId()) == true){
+                if(Main.getInstance().flying.get(target.getUniqueId())){
                     target.setAllowFlight(false);
                     target.setFlying(false);
                     Main.getInstance().flying.remove(target.getUniqueId());
                     Main.getInstance().flying.put(target.getUniqueId(), false);
-                    player.sendMessage("§cFly disable for : §b" + target.getName());
-                    target.sendMessage("§cFly disable by : §b" + player.getName());
+                    player.sendMessage(prefix + " §cFly disable for : §b" + target.getName());
+                    target.sendMessage(prefix + " §cFly disable by : §b" + player.getName());
                 }else {
                     target.setAllowFlight(true);
                     target.setFlying(true);
                     Main.getInstance().flying.remove(target.getUniqueId());
                     Main.getInstance().flying.put(target.getUniqueId(), true);
-                    player.sendMessage("§aFly enable for : §b" + target.getName());
-                    target.sendMessage("§aFly enable by : §b" + player.getName());
+                    player.sendMessage(prefix + " §aFly enable for : §b" + target.getName());
+                    target.sendMessage(prefix + " §aFly enable by : §b" + player.getName());
                 }
             }
         }
