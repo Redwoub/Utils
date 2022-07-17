@@ -4,6 +4,19 @@ permissions:
   bc: utils.bc
   gm: utils.gm
   skull: utils.skull
+  msg: utils.msg
 messages:
   discord: "https://discord.gg/"
   prefix: "&b[&6Mydoria&b]&a"
+  join: "&7%p &bjoined the server"
+  left: "&7%p &bleft the server"
+  not-a-player: "&cOnly a player can execute this"
+  dont-have-permission: "&cYou don't have the permission !"
+  player-doesnt-exist: "&cThis player doesn't exist"
+teleportation:
+  enable: true
+  x: 0
+  y: 60
+  z: 0
+  yaw: 90
+  pich: 0
