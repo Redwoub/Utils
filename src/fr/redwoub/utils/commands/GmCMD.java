@@ -6,22 +6,24 @@ import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 public class GmCMD implements CommandExecutor {
     private final String prefix = ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig().getString("messages.prefix"));
+    private final FileConfiguration config = Main.getInstance().getConfig();
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
 
         if(!(sender instanceof Player)){
-            sender.sendMessage("Only a player can execute this command !");
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("messages.not-a-player")));
             return false;
         }
         Player player = (Player) sender;
 
         if(!player.hasPermission(Main.getInstance().getConfig().getString("permissions.gm"))){
-            player.sendMessage(prefix + " §cYou don't have the permission !");
+            player.sendMessage(prefix + " " + ChatColor.translateAlternateColorCodes('&', config.getString("messages.dont-have-permission")));
             return false;
         }
 

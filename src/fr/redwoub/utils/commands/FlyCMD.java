@@ -6,16 +6,18 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 public class FlyCMD implements CommandExecutor {
     private final String prefix = ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig().getString("messages.prefix"));
+    private final FileConfiguration config = Main.getInstance().getConfig();
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
 
         if(!(sender instanceof Player)){
-            sender.sendMessage("Seul un joueur peux executer cette commande");
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("messages.not-a-player")));
             return false;
         }
 
@@ -36,13 +38,15 @@ public class FlyCMD implements CommandExecutor {
                     Main.getInstance().flying.put(player.getUniqueId(), true);
                     player.sendMessage(prefix + " §aFly enable");
                 }
+            } else {
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("messages.dont-have-permission")));
             }
         }
 
         if(args.length == 1){
             if(player.hasPermission(Main.getInstance().getConfig().getString("permissions.flyother"))){
                 if(Bukkit.getPlayer(args[0]) == null){
-                    player.sendMessage(prefix + " §cThis player doesn't exist !");
+                    player.sendMessage(prefix + " " + ChatColor.translateAlternateColorCodes('&', config.getString("messages.player-doesnt-exist")));
                     return false;
                 }
 
@@ -62,6 +66,8 @@ public class FlyCMD implements CommandExecutor {
                     player.sendMessage(prefix + " §aFly enable for : §b" + target.getName());
                     target.sendMessage(prefix + " §aFly enable by : §b" + player.getName());
                 }
+            } else {
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("messages.dont-have-permission")));
             }
         }
 

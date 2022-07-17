@@ -15,7 +15,7 @@ public class BcCMD implements CommandExecutor {
         StringBuilder stringBuilder;
 
         if(!sender.hasPermission(Main.getInstance().getConfig().getString("permissions.bc"))){
-            sender.sendMessage("You don't have the permission !");
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig().getString("messages.dont-have-permission")));
             return false;
         }
 

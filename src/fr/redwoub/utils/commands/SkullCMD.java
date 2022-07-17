@@ -6,24 +6,26 @@ import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
 public class SkullCMD implements CommandExecutor {
     private final String prefix = ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig().getString("messages.prefix"));
+    private final FileConfiguration config = Main.getInstance().getConfig();
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
         if(!(sender instanceof Player)){
-            sender.sendMessage(ChatColor.RED + "Only a player can execute this command !");
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("messages.not-a-player")));
             return false;
         }
         Player player = (Player) sender;
 
         if(!player.hasPermission(Main.getInstance().getConfig().getString("permissions.skull"))){
-            player.sendMessage(prefix + " §cYou don't have the permission !");
+            player.sendMessage(prefix + " " + ChatColor.translateAlternateColorCodes('&', config.getString("messages.dont-have-permission")));
             return false;
         }
 
