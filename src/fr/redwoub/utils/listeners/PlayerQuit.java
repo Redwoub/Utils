@@ -10,6 +10,10 @@ public class PlayerQuit implements Listener {
 
     @EventHandler
     public void onQuit(PlayerQuitEvent event){
-        event.setQuitMessage(ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig().getString("messages.left").replace("%p", event.getPlayer().getDisplayName())));
+        if(Main.getInstance().getConfig().getBoolean("messages.use-display-name-for-join-and-left")){
+            event.setQuitMessage(ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig().getString("messages.left").replace("%p", event.getPlayer().getDisplayName())));
+        } else {
+            event.setQuitMessage(ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig().getString("messages.left").replace("%p", event.getPlayer().getName())));
+        }
     }
 }
