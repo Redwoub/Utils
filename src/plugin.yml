@@ -9,3 +9,4 @@ commands:
   discord:
   fly:
   msg:
+  togglemsg:
