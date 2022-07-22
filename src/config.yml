@@ -5,15 +5,36 @@ permissions:
   gm: utils.gm
   skull: utils.skull
   msg: utils.msg
+  togglemsg: utils.togglemsg
 messages:
   discord: "https://discord.gg/"
   prefix: "&b[&6Mydoria&b]&a"
+  #%p is replace with the player's name
   join: "&7%p &bjoined the server"
   left: "&7%p &bleft the server"
+  #the difference beetween display name and name is if the player as a nickname, it's not this name but it's his display name so the message will display his nickname and not his name
+  #or if the player has their name colored, the message will display their name with the color. If this option is deactivated, the name indicated will be that of his minecraft account
+  use-display-name-for-join-and-left: true
   not-a-player: "&cOnly a player can execute this"
   dont-have-permission: "&cYou don't have the permission !"
   player-doesnt-exist: "&cThis player doesn't exist"
+  player-disable-msg: "&cThis player has disabled private messages"
+  enable-msg: "&aYou have enable the private message"
+  disable-msg: "&cYou have disable the private message"
+errors:
+  bc-invalid-arguments: "&cError &8: &e/bc <message>"
+  gm-invalid-arguments: "&cError &8: &e/gm 0 | 1 | 2 | 3"
+  msg-invalid-arguments: "&cError &8: &e/msg <Player> <Message>"
+  skull-invalid-arguments: "&cError &8: &e/skull <SkullOwner>"
+  togglemsg-invalid-arguments: "&cError &8: &e/togglemsg"
+msg:
+  #%p is replace by name of receiver and %m is replace by the message
+  player-recive-message-format: "&bTo &7%p &8: &7%m"
+  #%p is replace by name of sender and %m is replace by the message
+  target-recive-message-format: "&bFrom &7%p &8: &7%m"
+  use-display-name: false
 teleportation:
+  #teleport player when is logging to your server.
   enable: true
   x: 0
   y: 60
