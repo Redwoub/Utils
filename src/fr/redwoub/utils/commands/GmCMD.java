@@ -28,7 +28,7 @@ public class GmCMD implements CommandExecutor {
         }
 
         if(args.length != 1){
-            player.sendMessage(prefix + " §cError §8: §e/gm 0 | 1 | 2 | 3");
+            player.sendMessage(prefix + " " + ChatColor.translateAlternateColorCodes('&', config.getString("errors.gm-invalid-arguments")));
             return false;
         }
 

@@ -30,7 +30,7 @@ public class SkullCMD implements CommandExecutor {
         }
 
         if(args.length != 1){
-            player.sendMessage(prefix + " §cError §8: §e/skull <SkullOwner>");
+            player.sendMessage(prefix + " " + ChatColor.translateAlternateColorCodes('&', config.getString("errors.skull-invalid-arguments")));
             return false;
         }
 
